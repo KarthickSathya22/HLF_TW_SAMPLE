@@ -357,11 +357,11 @@ def predict():
         clobal = (np.average(balance_month))
    
     predict_request.append("{:.2f}".format(clobal))
-    res.append("{:.2f}".format(clobal))
+    res.append("{:,}".format(int(clobal)))
 
     asset = request.form["assetvalue"]
     predict_request.append(asset)
-    res.append(asset)
+    res.append("{:,}".format(int(asset)))
     
     cat = request.form["productcat"]
     prod_cat = {1784:"LOAN AGAINST PROPERTY",
@@ -414,15 +414,15 @@ def predict():
     
     chasasset = request.form["chasasset"]
     predict_request.append(chasasset)
-    res.append(chasasset)
+    res.append("{:,}".format(int(chasasset)))
     
     chasinitial = request.form["chasinitial"]
     predict_request.append(chasinitial)
-    res.append(chasinitial)
+    res.append("{:,}".format(int(chasinitial)))
     
     chasfin = int(chasasset) - int(chasinitial)
     predict_request.append(chasfin)
-    res.append(chasfin)
+    res.append("{:,}".format(int(chasfin)))
     
     fininter = request.form["finaninterest"]
     predict_request.append(fininter)
@@ -431,11 +431,11 @@ def predict():
     interestamount = (int(chasfin)*(int(tenure)/12)*(float(fininter)))/100
     emi = (int(chasfin)+int(interestamount))/int(tenure)
     predict_request.append(int(emi))
-    res.append(int(emi))
+    res.append("{:,}".format(int(emi)))
     
     inflow = request.form["totinflow"]
     predict_request.append(inflow)
-    res.append(inflow)
+    res.append("{:,}".format(int(inflow)))
     
     score = request.form["score"]
     predict_request.append(score)
